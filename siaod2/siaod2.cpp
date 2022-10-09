@@ -6,14 +6,22 @@
 #include <string>
 #include <random>
 #include <Windows.h>
+#include "app1.h"
 void zadanie1();
 using namespace std;
-void createFile(string& fname);
-void printFile(string& fname);
-void addLine(string& fname);
-string getByNumber(string& fname, int number);
-int numberCounter(string& fname);
-void var5(string& fname);
+struct patient {
+public:
+    int card;
+    int illness;
+    char doctor[16];
+    patient(int card, int illness, char* doctor) {
+        this->card = card;
+        this->illness = illness;
+        for (int i = 0; i < 16; i++) {
+            this->doctor[i] = doctor[i];
+        }
+    }
+};
 
 
 int main()
@@ -22,86 +30,7 @@ int main()
     return 0;
 }
 
-//создание и заполнение файла
-void createFile(string& fname) {
-    ofstream fout(fname + ".txt");
-    short n = rand() % 5 + 3;
-    short rowN;
-    for (short i = 0; i < n; i++) {
-        rowN = rand() % 5 + 1;
-        while (rowN > 1) {
-            rowN--;
-            fout << rand() % 1000;
-            fout << " ";
-        }
-        fout << rand() % 1000 << "\n";
-    }
-    fout.close();
-}
 
-//печать содержимого
-void printFile(string& fname) {
-    ifstream fin(fname + ".txt");
-    string str;
-    while (getline(fin, str)) {
-        cout << str << "\n";
-    }
-    fin.close();
-}
-
-//добавление строчки в конец
-void addLine(string& fname) {
-    ofstream fout;
-    fout.open(fname + ".txt", ios::app);
-    string str;
-    cin.get();
-    getline(cin, str);
-    fout << str << "\n";
-    fout.close();
-}
-
-//получение по номеру
-string getByNumber(string& fname, int number) {
-    ifstream fin(fname + ".txt");
-    string str;
-    for (int i = 0; i < number; i++) {
-        fin >> str;
-    }
-    fin.close();
-    return str;
-}
-
-//считает количество чисел
-int numberCounter(string& fname) {
-    ifstream fin(fname + ".txt");
-    int n = 0;
-    string str;
-    while (fin >> str) {
-        n++;
-    }
-    fin.close();
-    return n;
-}
-
-//умножение файла на последнюю запись
-void var5(string& fname) {
-    ifstream fin(fname + ".txt");
-    ofstream fout(fname + "_multipied.txt");
-    int n = 0;
-    int last;
-    int cur;
-    while (fin >> last) {
-        n++;
-    }
-    fin.close();
-    fin.open(fname + ".txt");
-    for (int i = 0; i < n; i++) {
-        fin >> cur;
-        fout << cur * last << "\n";
-    }
-    fin.close();
-    fout.close();
-}
 
 //приложение
 void zadanie1() {
@@ -138,7 +67,8 @@ void zadanie1() {
             break;
         case 5:
             var5(str);
-            cout << "File " << str << "_multiplied.txt was created\n";
+            cout << "File " << str << "_multiplied.txt was created:\n";
+            printFile(str + "_multiplied");
             cout << "\n---completed---\n\n";
             break;
         default:
