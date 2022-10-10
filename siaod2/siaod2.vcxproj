@@ -139,11 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="app1.cpp" />
+    <ClCompile Include="App1.cpp" />
+    <ClCompile Include="App2.cpp" />
+    <ClCompile Include="functions1.cpp" />
+    <ClCompile Include="functions2.cpp" />
+    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="siaod2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="app1.h" />
+    <ClInclude Include="App1.h" />
+    <ClInclude Include="App2.h" />
+    <ClInclude Include="functions1.h" />
+    <ClInclude Include="functions2.h" />
+    <ClInclude Include="Patient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

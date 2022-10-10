@@ -1,17 +1,20 @@
-#include "App1.h"
-App1::App1() {
-    zadanie1();
+#include "App2.h"
+
+App2::App2()
+{
+	zadanie2();
 }
 
-//приложение
-void App1::zadanie1() {
+void App2::zadanie2()
+{
     string str;
     cout << "Enter file name: ";
     cin >> str;
-    createFile(str);
+    createTextFile(str);
     int data;
     int task = 1;
-    cout << "File " << str << ".txt was created and filled with random numbers. ";
+    cout << "File " << str << ".txt was created and filled with random nodes. ";
+    /*
     while (task > 0 and task < 6) {
         cout << "Choose task:\n1) Print file\n2) Add new row\n3) Get value by number\n4) Get number count\n5) Multiply all values\n";
         cin >> task;
@@ -45,6 +48,6 @@ void App1::zadanie1() {
         default:
             break;
         }
-    }
+    }*/
     cout << "---exit---";
 }
