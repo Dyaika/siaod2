@@ -143,7 +143,6 @@
     <ClCompile Include="App2.cpp" />
     <ClCompile Include="functions1.cpp" />
     <ClCompile Include="functions2.cpp" />
-    <ClCompile Include="Patient.cpp" />
     <ClCompile Include="siaod2.cpp" />
   </ItemGroup>
   <ItemGroup>

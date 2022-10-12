@@ -12,4 +12,4 @@ void printAllBinary(string fname);
 void printRowBinary(string fname, int row);
 void deleteByKey(string fname, int key);
 void onlyPatientsWith(string fname, int illness);
-void newDoctorFor(string fname, int* cards, char* doctor);
+void newDoctorFor(string fname, int* cards, int n, char doctor[16]);
