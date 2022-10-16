@@ -221,20 +221,24 @@ void newDoctorFor(string fname, int* cards, int n, char doctor[16])
 	Patient temp;
 	int count = 0;
 	b.read((char*)&temp, sizeof(Patient));
-	while (!b.eof()) {
+	while (!b.eof())
+	{
 		for (int i = 0; i < n; i++) {
 			if (temp.card == cards[i]) {
 				for (int j = 0; j < 16; j++) {
 					temp.doctor[j] = doctor[j];
 				}
-				b.clear();
-				b.seekg(count * sizeof(Patient), ios::cur);
-				b.write((char*)&temp, sizeof(Patient));
-				cout << "\n" << temp.card << temp.illness << temp.doctor << "\n";
 				break;
 			}
 		}
+		//шагнули назад и переписали
+		b.seekg(sizeof(Patient) * (count), ios::beg);
+		b.write((char*)&temp, sizeof(Patient));
+		//cout << temp.card << " " << temp.illness << " " << temp.doctor << " " << count << "\n";
 		count++;
+		b.clear();
+		//шагаем дальше и читаем для будущего раза
+		b.seekg(sizeof(Patient) * (count), ios::beg);
 		b.read((char*)&temp, sizeof(Patient));
 	}
 	b.clear();
