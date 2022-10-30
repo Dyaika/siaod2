@@ -5,11 +5,11 @@
 #include "Patient.h"
 
 using namespace std;
-void createTextFile(string fname);
-void textToBinary(string fname);
-void binaryToText(string fname);
-void printAllBinary(string fname);
-void printRowBinary(string fname, int row);
-void deleteByKey(string fname, int key);
-void onlyPatientsWith(string fname, int illness);
-void newDoctorFor(string fname, int* cards, int n, char doctor[16]);
+void createTextFile(string fname, int length);
+void textToBinary(string fname, fstream& be);
+void binaryToText(fstream& b, string fname);
+void printAllBinary(fstream& b);
+Patient* getRowBinary(fstream& b, int row);
+bool deleteByKey(fstream& b, int key);
+void onlyPatientsWith(fstream& b, string fname, int illness);
+void newDoctorFor(fstream& b, int* cards, int n, char doctor[16]);

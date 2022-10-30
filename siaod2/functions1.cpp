@@ -113,7 +113,6 @@ void var5(string fname) {
     ofstream fout(fname + "_multiplied.txt");
     int n = 0;
     int last;
-    string new_file = "";
     int cur;
     string cur_str;
     //узнаем последнее число
