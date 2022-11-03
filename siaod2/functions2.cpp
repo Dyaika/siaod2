@@ -21,7 +21,7 @@ void createTextFile(string fname, int length = 0)
 	}
 }
 
-//создает бинарный файл по текстовому
+//пишет бинарный файл по текстовому
 void textToBinary(string fname, fstream& b)
 {
 
@@ -59,10 +59,8 @@ void binaryToText(fstream& b, string fname)
 	}
 	b.seekg(0, ios::beg);//ставим в начало
 	Patient temp;
-	b.read((char*)&temp, sizeof(Patient));
-	while (!b.eof()) {
+	while (b.read((char*)&temp, sizeof(Patient))) {
 		tout << temp.card << " " << temp.illness << " " << temp.doctor << "\n";
-		b.read((char*)&temp, sizeof(Patient));
 	}
 	tout.clear();
 	b.seekg(0, ios::beg);//возвращаем в начало
@@ -84,10 +82,8 @@ void printAllBinary(fstream& b)
 	}
 	b.seekg(0, ios::beg);//ставим в начало
 	Patient temp;
-	b.read((char*)&temp, sizeof(Patient));
-	while (!b.eof()) {
+	while (b.read((char*)&temp, sizeof(Patient))) {
 		cout << temp.card << " " << temp.illness << " " << temp.doctor << "\n";
-		b.read((char*)&temp, sizeof(Patient));
 	}
 	b.seekg(0, ios::beg);//возвращаем в начало
 	b.clear();
@@ -126,7 +122,7 @@ Patient* getRowBinary(fstream& b, int row) {
 	return res;
 }
 
-//заменяет на последнюю запись
+//удаляет, заменяя на последнюю запись
 bool deleteByKey(fstream& b, int key)
 {
 	b.clear();
@@ -137,16 +133,15 @@ bool deleteByKey(fstream& b, int key)
 	Patient last;
 	int i = 0;
 	int pos = -1;
+	bool res = false;
 	while (b.read((char*)&last, sizeof(Patient))) {
 		if (last.card == key) {
 			pos = i;
 		}
 		i++;
 	}
-	if (pos == -1) {
-		return false;
-	}
-	else {
+	if (pos != -1)  {
+		res = true;
 		b.clear();
 		b.seekp(pos * sizeof(Patient), ios::beg);
 		b.write((char*)&last, sizeof(Patient));
@@ -156,7 +151,7 @@ bool deleteByKey(fstream& b, int key)
 	if (!b.good()) {
 		exit(11);
 	}
-	return true;
+	return res;
 }
 
 //выбирает определенных больных

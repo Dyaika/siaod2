@@ -1,6 +1,4 @@
-﻿// siaod2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
+﻿//siaod2.cpp
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,8 +7,6 @@
 #include "App2.h"
 #include "Patient.h"
 using namespace std;
-
-
 
 int main()
 {
